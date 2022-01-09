@@ -21,7 +21,7 @@ export const createMovie = async (
       characters,
     })
 
-    await MovieService.create(movie)
+    await MovieService.create(movie) //create service contains a throw clause which will automatcially give the catch clause if any other error will come across
     res.json(movie)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
