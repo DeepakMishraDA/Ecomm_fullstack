@@ -1,9 +1,8 @@
-import express, { Response, Request } from 'express'
+import express from 'express'
+import { createUserDoc } from '../controllers/users'
 
 const users = express.Router()
 
-users.get('/', (req: Request, res: Response) => {
-  res.send('Hi Dashanan')
-})
+users.post('/', createUserDoc)
 
 export default users
