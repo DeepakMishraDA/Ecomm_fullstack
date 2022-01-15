@@ -9,13 +9,13 @@ export const createUserDoc = async (
   next: NextFunction
 ) => {
   try {
-    const { name, email, phone, date, address } = req.body
+    const { name, email } = req.body
     const user = new Users({
       name,
       email,
-      phone,
-      date,
-      address,
+      //phone,
+      //date,
+      // address,
     })
     await createUser(user)
     res.json(user)
