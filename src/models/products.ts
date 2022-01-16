@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose'
 
-type ProdDocument = Document & {
+export type ProdDocument = Document & {
   title: string
   prodid: number
   category: string
@@ -10,7 +10,7 @@ type ProdDocument = Document & {
 
 const { Schema } = mongoose
 
-const products = new Schema({
+export const products = new Schema({
   title: String,
   prodid: Number,
   category: String,
