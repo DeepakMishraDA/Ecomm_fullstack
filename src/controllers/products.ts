@@ -28,10 +28,31 @@ export const createProdDoc = async (
   }
 }
 
-export const findAllprod = async (res: Response, next: NextFunction) => {
+export const findAllprod = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const all = await findAll()
-    res.json(all)
+    const allprods = await findAll()
+    res.json(allprods)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const prodFindall = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const result = await findAll()
+    res.json(result)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
