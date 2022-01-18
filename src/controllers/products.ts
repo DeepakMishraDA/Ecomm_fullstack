@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Products from '../models/products'
-import { createProduct } from '../services/products'
+import { createProduct, findAll } from '../services/products'
 import { BadRequestError } from '../helpers/apiError'
 
 export const createProdDoc = async (
@@ -19,6 +19,19 @@ export const createProdDoc = async (
     })
     await createProduct(products)
     res.json(products)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const findAllprod = async (res: Response, next: NextFunction) => {
+  try {
+    const all = await findAll()
+    res.json(all)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
