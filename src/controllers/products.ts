@@ -44,20 +44,3 @@ export const findAllprod = async (
     }
   }
 }
-
-export const prodFindall = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const result = await findAll()
-    res.json(result)
-  } catch (error) {
-    if (error instanceof Error && error.name == 'ValidationError') {
-      next(new BadRequestError('Invalid Request', error))
-    } else {
-      next(error)
-    }
-  }
-}
