@@ -2,7 +2,7 @@ import mongoose, { Document } from 'mongoose'
 
 type OrderDocument = Document & {
   orderid: number
-  title: string
+  products: string[]
   date: Date
   quantity: number
 }
@@ -14,7 +14,12 @@ const order = new mongoose.Schema({
     require: true,
     unique: true,
   },
-  title: String,
+  products: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Products',
+    },
+  ],
   date: {
     type: Date,
     require: true,
