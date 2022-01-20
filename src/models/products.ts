@@ -12,7 +12,7 @@ const { Schema } = mongoose
 
 export const products = new Schema({
   title: String,
-  prodid: Number,
+  prodid: { type: Number, unique: true, require: true },
   category: String,
   specifications: Array,
   price: Number,
