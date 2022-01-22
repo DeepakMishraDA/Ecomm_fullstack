@@ -4,6 +4,7 @@ import fs from 'fs'
 import logger from './logger'
 
 if (fs.existsSync('.env')) {
+  //filesystem checking
   logger.debug('Using .env file to supply config environment variables')
   dotenv.config({ path: '.env' })
 } else {

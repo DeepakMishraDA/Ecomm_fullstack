@@ -22,9 +22,9 @@ app.use(lusca.xssProtection(true))
 
 // Use movie router
 app.use('/api/v1/users', users)
-app.use('/api/v1/products', products)
+app.use('/api/v2/products', products)
 
 // Custom API error handler
-app.use(apiErrorHandler)
+app.use(apiErrorHandler) //at the bottom bcz it is the default error
 
 export default app
