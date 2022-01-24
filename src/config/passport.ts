@@ -5,4 +5,14 @@ import { Strategy } from 'passport-jwt'
 
 import { Request, Response, NextFunction } from 'express'
 
-const LocalStrategy = passportLocal.Strategy
+const passportStrgy = new GoogleTokenStrategy(
+  {
+    clientID: GOOGLE_CLIENT_ID,
+    getGoogleCerts: optionalCustomGetGoogleCerts,
+  },
+  function (parsedToken, googleId, done) {
+    User.findOrCreate({ googleId: googleId }, function (err, user) {
+      return done(err, user)
+    })
+  }
+)
