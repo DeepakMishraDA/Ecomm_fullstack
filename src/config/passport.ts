@@ -7,8 +7,8 @@ import { Request, Response, NextFunction } from 'express'
 
 const passportStrgy = new GoogleTokenStrategy(
   {
-    clientID: GOOGLE_CLIENT_ID,
-    getGoogleCerts: optionalCustomGetGoogleCerts,
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    //getGoogleCerts: optionalCustomGetGoogleCerts,
   },
   function (parsedToken, googleId, done) {
     User.findOrCreate({ googleId: googleId }, function (err, user) {
