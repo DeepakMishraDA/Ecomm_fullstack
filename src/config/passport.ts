@@ -1,11 +1,10 @@
-import passport from 'passport'
 //import passportLocal from 'passport-local'
 import GoogleTokenStrategy from 'passport-google-id-token'
-import { Strategy } from 'passport-jwt'
+//import { Strategy } from 'passport-jwt'
 
-import { Request, Response, NextFunction } from 'express'
+//mport { Request, Response, NextFunction } from 'express'
 
-const passportStrgy = new GoogleTokenStrategy(
+export const passportStrgy = new GoogleTokenStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     //getGoogleCerts: optionalCustomGetGoogleCerts,
