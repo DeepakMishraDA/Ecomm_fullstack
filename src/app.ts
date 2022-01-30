@@ -5,6 +5,7 @@ import passport from 'passport'
 
 import users from './routers/user'
 import products from './routers/products'
+import loginrouter from './routers/login'
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 import compression from 'compression'
@@ -28,6 +29,7 @@ passport.use(passportStrgy)
 // Use movie router
 app.use('/api/v1/users', users)
 app.use('/api/v2/products', products)
+app.use('api/v1/google/login', loginrouter)
 
 // Custom API error handler
 app.use(apiErrorHandler) //at the bottom bcz it is the default error
