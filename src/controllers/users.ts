@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Users from '../models/users'
-import { createUser } from '../services/user'
+import { createUser, findAll } from '../services/user'
 import { BadRequestError } from '../helpers/apiError'
 
 export const createUserDoc = async (
@@ -26,4 +26,9 @@ export const createUserDoc = async (
       next(error)
     }
   }
+}
+
+export const userFindall = async (req: Request, res: Response) => {
+  const allUsers = await findAll()
+  res.json(allUsers)
 }
