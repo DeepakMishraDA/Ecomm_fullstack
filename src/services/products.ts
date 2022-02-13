@@ -20,3 +20,16 @@ export const findOne = async (id: string): Promise<ProdDocument> => {
   }
   return foundProd
 }
+
+export const upDate = async (
+  updateId: string,
+  update: Partial<ProdDocument>
+) => {
+  const findDoc = await Products.findByIdAndUpdate(updateId, update, {
+    new: true,
+  })
+  if (!findDoc) {
+    throw new NotFoundError(`Product ${updateId} not found`)
+  }
+  return findDoc
+}
