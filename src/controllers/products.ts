@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import Products from '../models/products'
-import { createProduct, findAll, findOne } from '../services/products'
+import { createProduct, findAll, findOne, upDate } from '../services/products'
 import { BadRequestError } from '../helpers/apiError'
 
 export const createProdDoc = async (
@@ -53,6 +53,25 @@ export const findbyId = async (
   try {
     const proId = req.params.proId
     res.json(findOne(proId))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const updateProd = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const update = req.body
+    const updateId = req.params.prodId
+    const updateProd = await upDate(updateId, update)
+    res.json(updateProd)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))
