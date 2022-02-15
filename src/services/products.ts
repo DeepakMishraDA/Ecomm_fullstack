@@ -33,3 +33,8 @@ export const upDate = async (
   }
   return findDoc
 }
+
+export const deleteProd = async (delId: string) => {
+  const deltdProd = await Products.findByIdAndDelete(delId)
+  return deltdProd
+}
