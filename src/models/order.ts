@@ -1,6 +1,6 @@
 import mongoose, { Document } from 'mongoose'
 
-type OrderDocument = Document & {
+export type OrderDocument = Document & {
   orderid: number
   products: string[]
   date: Date

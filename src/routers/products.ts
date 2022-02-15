@@ -12,4 +12,5 @@ products.get('/allproducts', findAllprod)
 products.post('/', createProdDoc)
 products.post('/:prodId', updateProd)
 products.delete('/:delId', deleteProd)
+
 export default products
