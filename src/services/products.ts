@@ -34,7 +34,7 @@ export const upDate = async (
   return findDoc
 }
 
-export const deleteProd = async (delId: string) => {
+export const deletProd = async (delId: string) => {
   const deltdProd = await Products.findByIdAndDelete(delId)
   if (!deltdProd) {
     throw new NotFoundError(`Product ${delId} not found`)
